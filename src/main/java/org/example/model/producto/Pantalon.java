@@ -1,4 +1,4 @@
-package org.example.model;
+package org.example.model.producto;
 
 public class Pantalon extends Producto{
     private int bolsillos;

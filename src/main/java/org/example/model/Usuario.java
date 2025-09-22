@@ -1,6 +1,10 @@
 package org.example.model;
 
+import org.example.model.producto.Producto;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
     private Long id;
@@ -10,6 +14,9 @@ public class Usuario {
     private String telefono;
     private String email;
     private String password;
+    private List<Producto> favoritos;
+
+
 
     private static long contador=0;
 
@@ -34,6 +41,7 @@ public class Usuario {
         this.email=email;
         this.password=password;
         this.id=++contador;
+        this.favoritos=new ArrayList<>();
     }
 
     public Long getId() {
@@ -85,5 +93,18 @@ public class Usuario {
         if(password.isBlank())
             throw new IllegalArgumentException("-- ERROR. Contraseña no valida");
         this.password = password;
+    }
+
+    public List<Producto> getFavoritos() {
+        return favoritos;
+    }
+
+    public void setFavoritos(List<Producto> favoritos) {
+        this.favoritos = favoritos;
+    }
+    public void addFavoritos(Producto producto){
+        if(producto==null)
+            throw new IllegalArgumentException("-- ERROR. Producto no valido");
+        favoritos.add(producto);
     }
 }

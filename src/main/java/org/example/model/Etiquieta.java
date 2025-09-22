@@ -8,8 +8,6 @@ public class Etiquieta {
     private String nombre;
     private LocalDate fechaCreacion;
 
-    
-
     public Etiquieta(String nombre, LocalDate fechaCreacion){
         if(id < 0)
             throw new IllegalArgumentException("-- ERROR. La id no puede ser menor que 0");
@@ -21,7 +19,6 @@ public class Etiquieta {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
     }
-
     public String getNombre() {
         return nombre;
     }
