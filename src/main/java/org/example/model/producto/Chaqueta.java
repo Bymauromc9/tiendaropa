@@ -10,8 +10,7 @@ public class Chaqueta extends Producto{
 
     @Override
     public double getPrecioFinal() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getPrecioFinal'");
+        return aplicarDescuento();
     }
 
 }

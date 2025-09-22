@@ -1,5 +1,6 @@
 package org.example.model;
 
+import org.example.model.pedido.Pedido;
 import org.example.model.producto.Producto;
 
 import java.time.LocalDate;
@@ -15,6 +16,7 @@ public class Usuario {
     private String email;
     private String password;
     private List<Producto> favoritos;
+    private List<Pedido> pedidos;
 
 
 
@@ -42,6 +44,7 @@ public class Usuario {
         this.password=password;
         this.id=++contador;
         this.favoritos=new ArrayList<>();
+        this.pedidos=new ArrayList<>();
     }
 
     public Long getId() {
@@ -107,4 +110,10 @@ public class Usuario {
             throw new IllegalArgumentException("-- ERROR. Producto no valido");
         favoritos.add(producto);
     }
+    public List<Pedido> getPedidos() { return pedidos; }
+
+    public void agregarPedido(Pedido pedido) {
+        this.pedidos.add(pedido);
+    }
+
 }

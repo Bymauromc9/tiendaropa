@@ -1,5 +1,11 @@
 package org.example.model.producto;
 
+import org.example.model.Etiquieta;
+import org.example.model.descuento.Descuento;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Producto {
 
     private Long id;
@@ -8,6 +14,8 @@ public abstract class Producto {
     private double precioInicial;
     private TALLA talla;
     private COLOR color;
+    private Descuento descuento;
+    private List<Etiquieta> etiquetas;
 
     private static long contador = 0;
 
@@ -38,6 +46,7 @@ public abstract class Producto {
         this.precioInicial = precioInicial;
         this.talla = talla;
         this.color = color;
+        this.etiquetas=new ArrayList<>();
     }
 
     public Long getId() { 
@@ -58,5 +67,47 @@ public abstract class Producto {
     public COLOR getColor() {
         return color; 
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public void setPrecioInicial(double precioInicial) {
+        this.precioInicial = precioInicial;
+    }
+
+    public void setTalla(TALLA talla) {
+        this.talla = talla;
+    }
+
+    public void setColor(COLOR color) {
+        this.color = color;
+    }
+
+    public void setDescuento(Descuento descuento) {
+        this.descuento = descuento;
+    }
+
+    public double aplicarDescuento(){
+        if(descuento!=null)
+            return  precioInicial-descuento.calcularMontoDescuento(this);
+        return precioInicial;
+    }
+
+    public void agregarEtiqueta(Etiquieta etiquieta){
+        etiquetas.add(etiquieta);
+    }
+    public void eliminarEtiqueta(Etiquieta etiquieta){
+        etiquetas.remove(etiquieta);
+    }
+
     public abstract double getPrecioFinal();
 }
