@@ -11,7 +11,7 @@ public class LineaPedido {
       private static long contador=0;
 
       public LineaPedido(Producto producto, int cantidad){
-            if(cantidad<0)
+            if(cantidad<=0)
                   throw new IllegalArgumentException("-- ERROR. La cantidad debe ser mayor que 0");
             if(producto==null)
                 throw new IllegalArgumentException("-- ERROR. Producto nulo");

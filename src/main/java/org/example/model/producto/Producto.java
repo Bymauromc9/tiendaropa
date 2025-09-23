@@ -28,17 +28,15 @@ public abstract class Producto {
     }
 
     public Producto(String nombre, String marca, double precioInicial, TALLA talla, COLOR color) {
-        if(id<0)
-            throw new IllegalArgumentException("-- ERROR: El id debe ser mayor que 0");
-        if(nombre.isEmpty())
+        if(nombre==null || nombre.isEmpty())
             throw new IllegalArgumentException("-- ERROR: El nombre no debe estar vacio");
-        if(marca.isEmpty())
+        if(marca == null || marca.isEmpty())
             throw new IllegalArgumentException("-- ERROR: La marca no debe estar vacia");
         if(precioInicial<0)
             throw new IllegalArgumentException("-- ERROR: El precio inicial debe ser mayor que 0");
-        if(talla.equals(null))
+        if(talla == null)
             throw new IllegalArgumentException("-- ERROR: La talla no puede ser nula");
-        if(color.equals(null))
+        if(color == null)
             throw new IllegalArgumentException("-- ERROR: El color no puede ser nulo");
         this.id = ++contador;
         this.nombre = nombre;
@@ -73,26 +71,38 @@ public abstract class Producto {
     }
 
     public void setNombre(String nombre) {
+        if(nombre==null || nombre.isEmpty())
+            throw new IllegalArgumentException("-- ERROR. El nombre no debe estar vacio");
         this.nombre = nombre;
     }
 
     public void setMarca(String marca) {
+        if(marca==null || marca.isEmpty())
+            throw new IllegalArgumentException("-- ERROR. La marca no debe estar vacia");
         this.marca = marca;
     }
 
     public void setPrecioInicial(double precioInicial) {
+        if(precioInicial<0)
+            throw new IllegalArgumentException("--ERROR. El precio inicial debe ser mayor que 0");
         this.precioInicial = precioInicial;
     }
 
     public void setTalla(TALLA talla) {
+        if(talla == null)
+            throw new IllegalArgumentException("--ERROR. La talla no puede ser nula");
         this.talla = talla;
     }
 
     public void setColor(COLOR color) {
+        if(color == null)
+            throw new IllegalArgumentException("--ERROR. El color no puede ser nulo");
         this.color = color;
     }
 
     public void setDescuento(Descuento descuento) {
+        if(descuento==null)
+                throw new IllegalArgumentException("--ERROR. El descuento no puede ser nula");
         this.descuento = descuento;
     }
 
@@ -102,11 +112,13 @@ public abstract class Producto {
         return precioInicial;
     }
 
-    public void agregarEtiqueta(Etiquieta etiquieta){
-        etiquetas.add(etiquieta);
+    public void agregarEtiqueta(Etiquieta etiqueta){
+        if(etiqueta!=null)
+            etiquetas.add(etiqueta);
     }
-    public void eliminarEtiqueta(Etiquieta etiquieta){
-        etiquetas.remove(etiquieta);
+    public void eliminarEtiqueta(Etiquieta etiqueta){
+        if(etiqueta!=null)
+            etiquetas.remove(etiqueta);
     }
 
     public abstract double getPrecioFinal();

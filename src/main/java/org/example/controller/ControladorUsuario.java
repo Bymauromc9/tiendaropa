@@ -19,13 +19,19 @@ public class ControladorUsuario {
     public void eliminarUsuario(Usuario usuario){
         usuariosRegistrados.remove(usuario);
     }
-    public void actualizarUsuario(String nuevoDni, String nuevaDireccion, LocalDate nuevaFechaNacimiento, String nuevoTelefono,String nuevoEmail, String nuevaPassword){
-        Usuario usuarioAux= new Usuario(nuevoDni,nuevaDireccion,nuevaFechaNacimiento,nuevoTelefono,nuevoEmail,nuevaPassword);
-        if(obtenerUsuarioPorId(usuarioAux.getId())!=null){
+    public void actualizarUsuario(Usuario usuario, String nuevoDni, String nuevaDireccion, LocalDate nuevaFechaNacimiento, String nuevoTelefono,String nuevoEmail, String nuevaPassword){
+        Usuario usuarioAux= obtenerUsuarioPorId(usuario.getId());
+        if(usuarioAux!=null){
+            usuarioAux.setDni(nuevoDni);
             usuarioAux.setDreccion(nuevaDireccion);
+            usuarioAux.setFechaNacimiento(nuevaFechaNacimiento);
+            usuarioAux.setTelefono(nuevoTelefono);
             usuarioAux.setEmail(nuevoEmail);
-        }
+            usuarioAux.setPassword(nuevaPassword);
+        }else
+            throw new IllegalArgumentException("-- ERROR. Usuario no existente, revisa los datos introducidos");
     }
+
     public Usuario obtenerUsuarioPorId(Long id){
         return usuariosRegistrados.stream().filter(l->l.getId().equals(id)).findFirst().orElse(null);
     }

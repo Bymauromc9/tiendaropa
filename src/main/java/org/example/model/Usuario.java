@@ -24,7 +24,7 @@ public class Usuario {
 
     public Usuario(String dni, String direccion, LocalDate fechaNacimiento, String telefono, String email, String password){
 
-        if(dni== null || !dni.matches("d{8}[A-Z]"))
+        if(dni== null || !dni.matches("\\d{8}[A-Z]"))
             throw new IllegalArgumentException("-- ERROR. DNI no valido");
         if(direccion.isBlank())
             throw new IllegalArgumentException("-- ERROR. Direeccion no valida");
@@ -55,13 +55,18 @@ public class Usuario {
         return dni;
     }
 
+    public void setDni(String dni) {
+        if(dni==null||dni.isBlank())
+            throw new IllegalArgumentException("--ERROR. DNI no valido");
+        this.dni = dni;
+    }
 
     public String getDireccion() {
         return direccion;
     }
 
     public void setDreccion(String direccion) {
-        if(password.isBlank())
+        if(direccion==null||direccion.isBlank())
             throw new IllegalArgumentException("-- ERROR. Direccion no valida");
         this.direccion = direccion;
     }
@@ -71,12 +76,21 @@ public class Usuario {
         return fechaNacimiento;
     }
 
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
+        if(fechaNacimiento==null)
+            throw new IllegalArgumentException("-- ERROR. La fecha de nacimiento no es valida");
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
     public String getTelefono() {
-        if(telefono.isBlank()|| !telefono.matches("\\d{9}"))
-            throw new IllegalArgumentException("-- ERROR. Telefono no valido");
         return telefono;
     }
 
+    public void setTelefono(String telefono) {
+        if(telefono==null||telefono.isBlank()|| !telefono.matches("\\d{9}"))
+            throw new IllegalArgumentException("--ERROR. Telefono no valido");
+        this.telefono = telefono;
+    }
 
     public String getEmail() {
         return email;
@@ -103,6 +117,8 @@ public class Usuario {
     }
 
     public void setFavoritos(List<Producto> favoritos) {
+        if(favoritos.isEmpty()||favoritos==null)
+            throw new IllegalArgumentException("-- ERROR. Lista de favoritos no valida");
         this.favoritos = favoritos;
     }
     public void addFavoritos(Producto producto){

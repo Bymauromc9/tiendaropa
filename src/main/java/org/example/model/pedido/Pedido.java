@@ -53,23 +53,20 @@ public class Pedido {
     }
 
     public void finalizar() {
-        if (estado != EstadoPedido.PENDIENTE) {
+        if (estado != EstadoPedido.PENDIENTE)
             throw new IllegalStateException("--ERROR. Solo se pueden finalizar pedidos pendientes");
-        }
         this.estado = EstadoPedido.FINALIZADO;
     }
 
     public void entregar() {
-        if (estado != EstadoPedido.FINALIZADO) {
+        if (estado != EstadoPedido.FINALIZADO)
             throw new IllegalStateException("--ERROR. Solo se pueden entregar pedidos finalizados");
-        }
         this.estado = EstadoPedido.ENTREGADO;
     }
 
     public void cancelar() {
-        if (estado != EstadoPedido.PENDIENTE) {
+        if (estado != EstadoPedido.PENDIENTE)
             throw new IllegalStateException("--ERROR. Solo se pueden cancelar pedidos pendientes");
-        }
         this.estado = EstadoPedido.CANCELADO;
     }
 

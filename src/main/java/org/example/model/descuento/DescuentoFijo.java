@@ -14,6 +14,6 @@ public class DescuentoFijo implements Descuento{
 
     @Override
     public double calcularMontoDescuento(Producto producto) {
-        return 0.0;
+        return descuentoFijo;
     }
 }

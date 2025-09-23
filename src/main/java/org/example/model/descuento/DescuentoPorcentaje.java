@@ -16,7 +16,8 @@ public class DescuentoPorcentaje implements Descuento{
     }
 
     public void setDescuentoPorcentaje(float descuentoPorcentaje) {
-        this.descuentoPorcentaje = descuentoPorcentaje;
+          if(descuentoPorcentaje<0||descuentoPorcentaje>1)
+              this.descuentoPorcentaje = descuentoPorcentaje;
     }
 
     @Override
