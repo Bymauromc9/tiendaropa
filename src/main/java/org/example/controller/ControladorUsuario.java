@@ -14,7 +14,7 @@ public class ControladorUsuario {
         return usuariosRegistrados.add(usuario);
     }
     public Optional<Usuario> loguearUsuario(String dni, String contrasena){
-         return usuariosRegistrados.stream().filter(l->l.getDni().equals(dni) && l.getPassword().equals(contrasena)).findFirst();
+        return usuariosRegistrados.stream().filter(l->l.getDni().equals(dni) && l.getPassword().equals(contrasena)).findFirst();
     }
     public void eliminarUsuario(Usuario usuario){
         usuariosRegistrados.remove(usuario);

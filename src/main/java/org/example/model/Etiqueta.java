@@ -2,13 +2,13 @@ package org.example.model;
 
 import java.time.LocalDate;
 
-public class Etiquieta {
+public class Etiqueta {
     private static long contador=0;
     private Long id;
     private String nombre;
     private LocalDate fechaCreacion;
 
-    public Etiquieta(String nombre, LocalDate fechaCreacion){
+    public Etiqueta(String nombre, LocalDate fechaCreacion){
         if(id < 0)
             throw new IllegalArgumentException("-- ERROR. La id no puede ser menor que 0");
         if(nombre.isBlank())

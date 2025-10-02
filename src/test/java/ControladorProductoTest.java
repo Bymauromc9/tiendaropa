@@ -41,7 +41,7 @@ public class ControladorProductoTest {
 
         // Assert
         assertTrue(resultado);
-        assertEquals(producto1, controlador.obtenerProductoPorId(1L));
+        assertEquals(producto1, controlador.obtenerProductoPorId(producto1.getId()));
     }
 
     @Test
@@ -69,8 +69,8 @@ public class ControladorProductoTest {
         // Assert
         assertTrue(resultado1);
         assertTrue(resultado2);
-        assertEquals(producto1, controlador.obtenerProductoPorId(1L));
-        assertEquals(producto2, controlador.obtenerProductoPorId(2L));
+        assertEquals(producto1, controlador.obtenerProductoPorId(producto1.getId()));
+        assertEquals(producto2, controlador.obtenerProductoPorId(producto2.getId()));
     }
 
     // Tests para eliminarProducto()
@@ -85,7 +85,7 @@ public class ControladorProductoTest {
 
         // Assert
         assertTrue(resultado);
-        assertNull(controlador.obtenerProductoPorId(1L));
+        assertNull(controlador.obtenerProductoPorId(producto1.getId()));
     }
 
     @Test
@@ -183,7 +183,7 @@ public class ControladorProductoTest {
         controlador.registrarProducto(producto1);
 
         // Act
-        Producto resultado = controlador.obtenerProductoPorId(1L);
+        Producto resultado = controlador.obtenerProductoPorId(producto1.getId());
 
         // Assert
         assertNotNull(resultado);
@@ -238,27 +238,27 @@ public class ControladorProductoTest {
     void testFlujoCompleto() {
         // Registrar
         assertTrue(controlador.registrarProducto(producto1));
-        assertNotNull(controlador.obtenerProductoPorId(1L));
+        assertNotNull(controlador.obtenerProductoPorId(producto1.getId()));
 
         // Actualizar
         String nombreNuevo = "Camiseta Premium";
         controlador.actualizarProdcuto(producto1, nombreNuevo, "Nike Pro",
                 descuento, Producto.COLOR.NEGRO, Producto.TALLA.XL);
 
-        Producto productoActualizado = controlador.obtenerProductoPorId(1L);
+        Producto productoActualizado = controlador.obtenerProductoPorId(producto1.getId());
         assertEquals(nombreNuevo, productoActualizado.getNombre());
         assertEquals("Nike Pro", productoActualizado.getMarca());
 
         // Eliminar
         assertTrue(controlador.eliminarProducto(producto1));
-        assertNull(controlador.obtenerProductoPorId(1L));
+        assertNull(controlador.obtenerProductoPorId(producto1.getId()));
     }
 
     @Test
     @DisplayName("Debe manejar lista vacía correctamente")
     void testListaVacia() {
         // Assert
-        assertNull(controlador.obtenerProductoPorId(1L));
+        assertNull(controlador.obtenerProductoPorId(producto1.getId()));
 
         IllegalArgumentException exception = assertThrows(
                 IllegalArgumentException.class,

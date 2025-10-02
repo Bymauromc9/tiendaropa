@@ -1,6 +1,6 @@
 package org.example.model.producto;
 
-import org.example.model.Etiquieta;
+import org.example.model.Etiqueta;
 import org.example.model.descuento.Descuento;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ public abstract class Producto {
     private TALLA talla;
     private COLOR color;
     private Descuento descuento;
-    private List<Etiquieta> etiquetas;
+    private List<Etiqueta> etiquetas;
 
     private static long contador = 0;
 
@@ -112,11 +112,11 @@ public abstract class Producto {
         return precioInicial;
     }
 
-    public void agregarEtiqueta(Etiquieta etiqueta){
+    public void agregarEtiqueta(Etiqueta etiqueta){
         if(etiqueta!=null)
             etiquetas.add(etiqueta);
     }
-    public void eliminarEtiqueta(Etiquieta etiqueta){
+    public void eliminarEtiqueta(Etiqueta etiqueta){
         if(etiqueta!=null)
             etiquetas.remove(etiqueta);
     }
