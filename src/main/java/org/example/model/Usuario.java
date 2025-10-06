@@ -24,15 +24,15 @@ public class Usuario {
 
         if(dni== null || !dni.matches("\\d{8}[A-Z]"))
             throw new IllegalArgumentException("-- ERROR. DNI no valido");
-        if(direccion.isBlank())
+        if(direccion==null || direccion.isBlank())
             throw new IllegalArgumentException("-- ERROR. Direeccion no valida");
         if(fechaNacimiento==null)
             throw new IllegalArgumentException("-- ERROR. Fecha de nacimiento no valida");
-        if(telefono == null || !telefono.matches("\\d{9}"))
+        if(telefono == null || !telefono.matches("\\d{9}")|| telefono.isEmpty())
             throw new IllegalArgumentException("-- ERROR. Telefono no valido");
-        if(email==null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))
-            throw new IllegalArgumentException("-- ERROR. DNI no valido");
-        if(password.isBlank())
+        if(email==null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")|| email.isEmpty())
+            throw new IllegalArgumentException("-- ERROR. Email no valido");
+        if(password==null || password.isBlank())
             throw new IllegalArgumentException("-- ERROR. Contraseña no valida");
         this.dni=dni;
         this.direccion=direccion;
@@ -54,8 +54,8 @@ public class Usuario {
     }
 
     public void setDni(String dni) {
-        if(dni==null||dni.isBlank())
-            throw new IllegalArgumentException("--ERROR. DNI no valido");
+        if(dni==null|| !dni.matches("\\d{8}[A-Z]"))
+            throw new IllegalArgumentException("-- ERROR. DNI no valido");
         this.dni = dni;
     }
 
@@ -63,8 +63,8 @@ public class Usuario {
         return direccion;
     }
 
-    public void setDreccion(String direccion) {
-        if(direccion==null||direccion.isBlank())
+    public void setDireccion(String direccion) {
+        if(direccion==null||direccion.isEmpty())
             throw new IllegalArgumentException("-- ERROR. Direccion no valida");
         this.direccion = direccion;
     }
@@ -99,7 +99,6 @@ public class Usuario {
         this.email = email;
     }
 
-
     public String getPassword() {
         return password;
     }
@@ -115,7 +114,7 @@ public class Usuario {
     }
 
     public void setFavoritos(List<Producto> favoritos) {
-        if(favoritos.isEmpty()||favoritos==null)
+        if(favoritos==null)
             throw new IllegalArgumentException("-- ERROR. Lista de favoritos no valida");
         this.favoritos = favoritos;
     }

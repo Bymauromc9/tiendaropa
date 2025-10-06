@@ -77,7 +77,7 @@ public abstract class Producto {
     }
 
     public void setMarca(String marca) {
-        if(marca==null || marca.isEmpty())
+        if(marca == null || marca.isEmpty())
             throw new IllegalArgumentException("-- ERROR. La marca no debe estar vacia");
         this.marca = marca;
     }
@@ -102,13 +102,18 @@ public abstract class Producto {
 
     public void setDescuento(Descuento descuento) {
         if(descuento==null)
-                throw new IllegalArgumentException("--ERROR. El descuento no puede ser nula");
+                throw new IllegalArgumentException("--ERROR. El descuento no puede ser nulo");
         this.descuento = descuento;
     }
 
     public double aplicarDescuento(){
-        if(descuento!=null)
-            return  precioInicial-descuento.calcularMontoDescuento(this);
+        if(descuento!=null){
+            double precioFinal= precioInicial-descuento.calcularMontoDescuento(this);
+            if(precioFinal<0)
+                throw new IllegalArgumentException("-- ERROR. El descuento no puede dejar el precio final en negativo");
+            return precioFinal;
+        }
+            
         return precioInicial;
     }
 

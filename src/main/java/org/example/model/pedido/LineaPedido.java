@@ -24,7 +24,6 @@ public class LineaPedido {
             return id;
       }
 
-
       public int getCantidad() {
             return cantidad;
       }

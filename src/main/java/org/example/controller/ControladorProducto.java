@@ -17,20 +17,19 @@ public class ControladorProducto {
 
     }
     public boolean eliminarProducto(Producto producto){
-        producto = obtenerProductoPorId(producto.getId());
-        if(producto!=null)
-            return lista.remove(producto);
-        else
-            return false;
+        Producto p = obtenerProductoPorId(producto.getId());
+        if(p!=null)
+            return lista.remove(p);
+        return false;
     }
-    public boolean actualizarProdcuto(Producto producto, String nuevoNombre, String nuevaMarca, Descuento nuevoDescuento, Producto.COLOR nuevoColor, Producto.TALLA nuevaTalla){
-        producto=obtenerProductoPorId(producto.getId());
-        if(producto!=null){
-            producto.setNombre(nuevoNombre);
-            producto.setMarca(nuevaMarca);
-            producto.setDescuento(nuevoDescuento);
-            producto.setColor(nuevoColor);
-            producto.setTalla(nuevaTalla);
+    public boolean actualizarProducto(Producto producto, String nuevoNombre, String nuevaMarca, Descuento nuevoDescuento, Producto.COLOR nuevoColor, Producto.TALLA nuevaTalla){
+        Producto p=obtenerProductoPorId(producto.getId());
+        if(p!=null){
+            p.setNombre(nuevoNombre);
+            p.setMarca(nuevaMarca);
+            p.setDescuento(nuevoDescuento);
+            p.setColor(nuevoColor);
+            p.setTalla(nuevaTalla);
             return true;
         }else
             return false;

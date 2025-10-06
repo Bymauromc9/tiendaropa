@@ -11,23 +11,33 @@ public class ControladorUsuario {
     private List<Usuario> usuariosRegistrados = new ArrayList<>();
 
     public boolean registrarUsuario(Usuario usuario){
-        return usuariosRegistrados.add(usuario);
+        if(usuario!=null && obtenerUsuarioPorId(usuario.getId())==null)
+            return usuariosRegistrados.add(usuario);
+        return false;
     }
-    public Optional<Usuario> loguearUsuario(String dni, String contrasena){
-        return usuariosRegistrados.stream().filter(l->l.getDni().equals(dni) && l.getPassword().equals(contrasena)).findFirst();
+
+    public Optional<Usuario> loguearUsuario(String email, String contrasena){
+        if(email==null || email.isEmpty())
+            throw new IllegalArgumentException("-- ERROR. Email nulo");
+        return usuariosRegistrados.stream().filter(l->l.getEmail().equals(email) && l.getPassword().equals(contrasena)).findFirst();
     }
-    public void eliminarUsuario(Usuario usuario){
-        usuariosRegistrados.remove(usuario);
+
+    public boolean eliminarUsuario(Usuario usuario){
+        if(obtenerUsuarioPorId(usuario.getId())!=null){
+            return usuariosRegistrados.remove(usuario);
+        }
+        return false;
     }
+
     public void actualizarUsuario(Usuario usuario, String nuevoDni, String nuevaDireccion, LocalDate nuevaFechaNacimiento, String nuevoTelefono,String nuevoEmail, String nuevaPassword){
-        Usuario usuarioAux= obtenerUsuarioPorId(usuario.getId());
-        if(usuarioAux!=null){
-            usuarioAux.setDni(nuevoDni);
-            usuarioAux.setDreccion(nuevaDireccion);
-            usuarioAux.setFechaNacimiento(nuevaFechaNacimiento);
-            usuarioAux.setTelefono(nuevoTelefono);
-            usuarioAux.setEmail(nuevoEmail);
-            usuarioAux.setPassword(nuevaPassword);
+        Usuario u= obtenerUsuarioPorId(usuario.getId());
+        if(u!=null){
+            u.setDni(nuevoDni);
+            u.setDireccion(nuevaDireccion);
+            u.setFechaNacimiento(nuevaFechaNacimiento);
+            u.setTelefono(nuevoTelefono);
+            u.setEmail(nuevoEmail);
+            u.setPassword(nuevaPassword);
         }else
             throw new IllegalArgumentException("-- ERROR. Usuario no existente, revisa los datos introducidos");
     }

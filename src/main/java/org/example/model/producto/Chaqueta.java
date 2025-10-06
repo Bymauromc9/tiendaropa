@@ -4,8 +4,10 @@ public class Chaqueta extends Producto{
     private boolean conCapucha;
     private int nivelAbrigo;
 
-    public Chaqueta(String nombre, String marca, int nivelAbrigo, boolean conCapucha, TALLA talla, COLOR color){
-        super(nombre, marca, nivelAbrigo, talla, color); 
+    public Chaqueta(String nombre, String marca, double precioInicial, int nivelAbrigo, boolean conCapucha, TALLA talla, COLOR color){
+        super(nombre, marca, precioInicial, talla, color);
+        this.nivelAbrigo=nivelAbrigo;
+        this.conCapucha=conCapucha; 
     }
 
     @Override
@@ -13,4 +15,22 @@ public class Chaqueta extends Producto{
         return aplicarDescuento();
     }
 
+    public boolean isConCapucha() {
+        return conCapucha;
+    }
+
+    public void setConCapucha(boolean conCapucha) {
+        this.conCapucha = conCapucha;
+    }
+
+    public int getNivelAbrigo() {
+        return nivelAbrigo;
+    }
+
+    public void setNivelAbrigo(int nivelAbrigo) {
+        this.nivelAbrigo = nivelAbrigo;
+    }
+
+
+    
 }

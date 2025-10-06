@@ -52,26 +52,34 @@ public class Pedido {
         this.estado = estado;
     }
 
-    public void finalizar() {
-        if (estado != EstadoPedido.PENDIENTE)
+    public boolean finalizar() {
+        if (estado != EstadoPedido.PENDIENTE){
             throw new IllegalStateException("--ERROR. Solo se pueden finalizar pedidos pendientes");
+        }
         this.estado = EstadoPedido.FINALIZADO;
+        return true;
     }
 
-    public void entregar() {
+    public boolean entregar() {
         if (estado != EstadoPedido.FINALIZADO)
             throw new IllegalStateException("--ERROR. Solo se pueden entregar pedidos finalizados");
         this.estado = EstadoPedido.ENTREGADO;
+        return true;
     }
 
-    public void cancelar() {
+    public boolean cancelar() {
         if (estado != EstadoPedido.PENDIENTE)
             throw new IllegalStateException("--ERROR. Solo se pueden cancelar pedidos pendientes");
         this.estado = EstadoPedido.CANCELADO;
+        return true;
     }
 
-    public void añadirLineaPedido(LineaPedido lineaPedido){
-        lineaPedidos.add(lineaPedido);
+    public boolean añadirLineaPedido(LineaPedido lineaPedido){
+        if(lineaPedido!=null){
+            lineaPedidos.add(lineaPedido);
+            return true;
+        }
+        return false;
     }
 
     public double getPrecioTotal(){

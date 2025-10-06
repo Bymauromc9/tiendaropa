@@ -9,8 +9,6 @@ public class Etiqueta {
     private LocalDate fechaCreacion;
 
     public Etiqueta(String nombre, LocalDate fechaCreacion){
-        if(id < 0)
-            throw new IllegalArgumentException("-- ERROR. La id no puede ser menor que 0");
         if(nombre.isBlank())
             throw new IllegalArgumentException("-- ERROR. El nombre no es valido");
         if(fechaCreacion == null)
