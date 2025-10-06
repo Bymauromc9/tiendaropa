@@ -22,8 +22,6 @@ public class ControladorProductoTest {
     @BeforeEach
     void setUp() {
         controlador = new ControladorProducto();
-
-
         // Crear productos de prueba (necesitarás ajustar el constructor según tu clase Producto)
         producto1 = new Pantalon("Hola2", "nike", 10, Producto.TALLA.L, Producto.COLOR.ROJO);
         producto2 = new Camisa("Hola", "primark", 11, Producto.TALLA.M, Producto.COLOR.AZUL);

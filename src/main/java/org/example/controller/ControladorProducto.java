@@ -21,9 +21,9 @@ public class ControladorProducto {
         if(producto!=null)
             return lista.remove(producto);
         else
-            throw new IllegalArgumentException("-- ERROR. Producto no encontrado");
+            return false;
     }
-    public void actualizarProdcuto(Producto producto, String nuevoNombre, String nuevaMarca, Descuento nuevoDescuento, Producto.COLOR nuevoColor, Producto.TALLA nuevaTalla){
+    public boolean actualizarProdcuto(Producto producto, String nuevoNombre, String nuevaMarca, Descuento nuevoDescuento, Producto.COLOR nuevoColor, Producto.TALLA nuevaTalla){
         producto=obtenerProductoPorId(producto.getId());
         if(producto!=null){
             producto.setNombre(nuevoNombre);
@@ -31,8 +31,9 @@ public class ControladorProducto {
             producto.setDescuento(nuevoDescuento);
             producto.setColor(nuevoColor);
             producto.setTalla(nuevaTalla);
+            return true;
         }else
-            throw new IllegalArgumentException("-- ERROR. Producto no encontrado");
+            return false;
     }
     public Producto obtenerProductoPorId(Long id){
         return  lista.stream().filter(l->l.getId().equals(id)).findFirst().orElse(null);

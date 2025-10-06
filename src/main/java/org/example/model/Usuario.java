@@ -18,8 +18,6 @@ public class Usuario {
     private List<Producto> favoritos;
     private List<Pedido> pedidos;
 
-
-
     private static long contador=0;
 
     public Usuario(String dni, String direccion, LocalDate fechaNacimiento, String telefono, String email, String password){
