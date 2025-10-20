@@ -12,7 +12,7 @@ public class ControladorProducto {
 
     public boolean registrarProducto(Producto producto){
         if(obtenerProductoPorId(producto.getId())!=null)
-            throw new IllegalArgumentException("--ERROR. El producto ya existe");
+            throw new IllegalArgumentException("-- ERROR. El producto ya existe");
         return lista.add(producto);
 
     }

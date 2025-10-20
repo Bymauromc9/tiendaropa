@@ -76,7 +76,7 @@ public class ControladorPedido {
                   return nuevo;
             });
 
-            pedido.añadirLineaPedido(new LineaPedido(producto, cantidad));
+            pedido.anadirLineaPedido(new LineaPedido(producto, cantidad));
             
             return true;
       }
@@ -115,5 +115,4 @@ public class ControladorPedido {
             pedido.cancelar();
             return pedido;
       }
-
 }

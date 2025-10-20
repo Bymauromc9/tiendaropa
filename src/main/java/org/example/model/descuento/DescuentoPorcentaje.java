@@ -17,7 +17,7 @@ public class DescuentoPorcentaje implements Descuento{
 
     public void setDescuentoPorcentaje(float descuentoPorcentaje) {
         if(descuentoPorcentaje<0||descuentoPorcentaje>1)
-            throw new IllegalArgumentException("--ERROR. El porcentaje debe estar entre 0 y 1");
+            throw new IllegalArgumentException("-- ERROR. El porcentaje debe estar entre 0 y 1");
         this.descuento=descuentoPorcentaje;
     }
 
