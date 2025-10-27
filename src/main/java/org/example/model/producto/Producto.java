@@ -128,22 +128,8 @@ public abstract class Producto {
     }
 
 
-<<<<<<< HEAD
     @JsonIgnore
     public double aplicarDescuento(){
-=======
-    public void agregarEtiqueta(Etiqueta etiqueta){
-        if(etiqueta!=null)
-            etiquetas.add(etiqueta);
-    }
-
-    public void eliminarEtiqueta(Etiqueta etiqueta){
-        if(etiqueta!=null)
-            etiquetas.remove(etiqueta);
-    }
-
-    public double getPrecioFinal(){
->>>>>>> afc73a56aa65532cc8383a6c761b4422c844895e
         if(descuento!=null){
             double precioFinal= precioInicial-descuento.calcularMontoDescuento(this);
             if(precioFinal<0)
@@ -152,7 +138,6 @@ public abstract class Producto {
         }
         return precioInicial;
     }
-<<<<<<< HEAD
 
     public void agregarEtiqueta(Etiqueta etiqueta){
         if(etiqueta!=null)
@@ -165,6 +150,4 @@ public abstract class Producto {
 
     @JsonIgnore
     public abstract double getPrecioFinal();
-=======
->>>>>>> afc73a56aa65532cc8383a6c761b4422c844895e
 }

@@ -33,12 +33,12 @@ class GsonPedidoUtilTest {
         Pedido pedido1 = new Pedido(new Date(System.currentTimeMillis()), EstadoPedido.PENDIENTE);
         Producto camisa = new Camisa("Camisa Azul", "Nike", 25.99, 6, 
                 Producto.TALLA.M, Producto.COLOR.AZUL);
-        pedido1.añadirLineaPedido(new LineaPedido(camisa, 2));
+        pedido1.anadirLineaPedido(new LineaPedido(camisa, 2));
         
         Pedido pedido2 = new Pedido(new Date(System.currentTimeMillis()), EstadoPedido.FINALIZADO);
         Producto camisa2 = new Camisa("Camisa Blanca", "Adidas", 29.99, 8, 
                 Producto.TALLA.L, Producto.COLOR.BLANCO);
-        pedido2.añadirLineaPedido(new LineaPedido(camisa2, 1));
+        pedido2.anadirLineaPedido(new LineaPedido(camisa2, 1));
         
         pedidosOriginales.add(pedido1);
         pedidosOriginales.add(pedido2);
