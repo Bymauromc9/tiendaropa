@@ -25,9 +25,6 @@ public class Camisa extends Producto{
         this.botones = botones;
     }
 
-    @Override
-    public double getPrecioFinal() {
-        return aplicarDescuento();
-    }
+
     
 }

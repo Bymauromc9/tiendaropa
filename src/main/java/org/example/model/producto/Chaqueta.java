@@ -14,10 +14,6 @@ public class Chaqueta extends Producto{
         this.conCapucha=conCapucha; 
     }
 
-    @Override
-    public double getPrecioFinal() {
-        return aplicarDescuento();
-    }
 
     public boolean isConCapucha() {
         return conCapucha;

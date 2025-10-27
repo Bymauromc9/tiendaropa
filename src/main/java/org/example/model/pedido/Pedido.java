@@ -54,7 +54,7 @@ public class Pedido {
 
     public boolean finalizar() {
         if (estado != EstadoPedido.PENDIENTE){
-            throw new IllegalStateException("--ERROR. Solo se pueden finalizar pedidos pendientes");
+            throw new IllegalStateException("-- ERROR. Solo se pueden finalizar pedidos pendientes");
         }
         this.estado = EstadoPedido.FINALIZADO;
         return true;
@@ -62,19 +62,19 @@ public class Pedido {
 
     public boolean entregar() {
         if (estado != EstadoPedido.FINALIZADO)
-            throw new IllegalStateException("--ERROR. Solo se pueden entregar pedidos finalizados");
+            throw new IllegalStateException("-- ERROR. Solo se pueden entregar pedidos finalizados");
         this.estado = EstadoPedido.ENTREGADO;
         return true;
     }
 
     public boolean cancelar() {
         if (estado != EstadoPedido.PENDIENTE)
-            throw new IllegalStateException("--ERROR. Solo se pueden cancelar pedidos pendientes");
+            throw new IllegalStateException("-- ERROR. Solo se pueden cancelar pedidos pendientes");
         this.estado = EstadoPedido.CANCELADO;
         return true;
     }
 
-    public boolean añadirLineaPedido(LineaPedido lineaPedido){
+    public boolean anadirLineaPedido(LineaPedido lineaPedido){
         if(lineaPedido!=null){
             lineaPedidos.add(lineaPedido);
             return true;

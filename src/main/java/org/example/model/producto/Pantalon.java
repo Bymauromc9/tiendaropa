@@ -14,10 +14,7 @@ public class Pantalon extends Producto{
         this.bolsillos=bolsillos;
     }
 
-    @Override
-    public double getPrecioFinal() {
-        return aplicarDescuento();
-    }
+
 
     public int getBolsillos() {
         return bolsillos;
