@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "fecha": 1761519489185,
+    "estado": "PENDIENTE",
+    "lineaPedidos": [
+      {
+        "id": 1,
+        "cantidad": 2,
+        "producto": {
+          "botones": 6,
+          "id": 1,
+          "nombre": "Camisa Azul",
+          "marca": "Nike",
+          "precioInicial": 25.99,
+          "talla": "M",
+          "color": "AZUL",
+          "etiquetas": []
+        }
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "fecha": 1761519489186,
+    "estado": "FINALIZADO",
+    "lineaPedidos": [
+      {
+        "id": 2,
+        "cantidad": 1,
+        "producto": {
+          "botones": 8,
+          "id": 2,
+          "nombre": "Camisa Blanca",
+          "marca": "Adidas",
+          "precioInicial": 29.99,
+          "talla": "L",
+          "color": "BLANCO",
+          "etiquetas": []
+        }
+      }
+    ]
+  }
+]

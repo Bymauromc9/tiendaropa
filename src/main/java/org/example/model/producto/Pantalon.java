@@ -3,6 +3,10 @@ package org.example.model.producto;
 public class Pantalon extends Producto{
     private int bolsillos;
 
+    public Pantalon(){
+        super();
+    }
+
     public Pantalon(String nombre, String marca,double precioInicial, int bolsillos, TALLA talla, COLOR color){
         super(nombre, marca, precioInicial, talla, color);
         if(bolsillos<0)

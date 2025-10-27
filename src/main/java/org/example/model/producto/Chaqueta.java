@@ -4,6 +4,10 @@ public class Chaqueta extends Producto{
     private boolean conCapucha;
     private int nivelAbrigo;
 
+
+    public Chaqueta(){
+        super();
+    }
     public Chaqueta(String nombre, String marca, double precioInicial, int nivelAbrigo, boolean conCapucha, TALLA talla, COLOR color){
         super(nombre, marca, precioInicial, talla, color);
         this.nivelAbrigo=nivelAbrigo;
@@ -30,7 +34,4 @@ public class Chaqueta extends Producto{
     public void setNivelAbrigo(int nivelAbrigo) {
         this.nivelAbrigo = nivelAbrigo;
     }
-
-
-    
 }

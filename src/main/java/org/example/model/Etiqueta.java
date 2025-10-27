@@ -2,11 +2,24 @@ package org.example.model;
 
 import java.time.LocalDate;
 
+import com.opencsv.bean.CsvBindByName;
+import com.opencsv.bean.CsvDate;
+
 public class Etiqueta {
     private static long contador=0;
+    @CsvBindByName(column = "id")
     private Long id;
+
+    @CsvBindByName(column = "nombre")
     private String nombre;
+    
+    @CsvBindByName(column = "fecha_creacion")
+    @CsvDate(value = "yyyy-MM-dd")
     private LocalDate fechaCreacion;
+
+    public Etiqueta() {
+        this.id = ++contador;
+    }
 
     public Etiqueta(String nombre, LocalDate fechaCreacion){
         if(nombre.isBlank())

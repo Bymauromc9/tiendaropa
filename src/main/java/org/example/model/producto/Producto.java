@@ -3,12 +3,30 @@ package org.example.model.producto;
 import org.example.model.Etiqueta;
 import org.example.model.descuento.Descuento;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
+@JsonTypeInfo(
+    use = JsonTypeInfo.Id.NAME,
+    include = JsonTypeInfo.As.PROPERTY,
+    property = "tipo"
+)
+@JsonSubTypes({
+    @JsonSubTypes.Type(value = Camisa.class, name = "camisa"),
+    @JsonSubTypes.Type(value = Chaqueta.class, name = "chaqueta"),
+    @JsonSubTypes.Type(value = Pantalon.class, name = "pantalon")
+})
+
 public abstract class Producto {
 
+    @JsonIgnore
     private Long id;
+
     private String nombre;
     private String marca;
     private double precioInicial;
@@ -25,6 +43,9 @@ public abstract class Producto {
 
     public enum COLOR {
         ROJO, AZUL, VERDE, NEGRO, BLANCO, AMARILLO
+    }
+    public Producto(){
+        
     }
 
     public Producto(String nombre, String marca, double precioInicial, TALLA talla, COLOR color) {
@@ -106,6 +127,8 @@ public abstract class Producto {
         this.descuento = descuento;
     }
 
+
+    @JsonIgnore
     public double aplicarDescuento(){
         if(descuento!=null){
             double precioFinal= precioInicial-descuento.calcularMontoDescuento(this);
@@ -126,5 +149,6 @@ public abstract class Producto {
             etiquetas.remove(etiqueta);
     }
 
+    @JsonIgnore
     public abstract double getPrecioFinal();
 }
