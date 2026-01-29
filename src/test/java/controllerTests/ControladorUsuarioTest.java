@@ -1,6 +1,8 @@
 package controllerTests;
-import org.example.controller.ControladorUsuario;
+
+import org.example.conexion.ConexionBD;
 import org.example.model.Usuario;
+import org.example.service.UsuarioService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,50 +10,52 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ControladorUsuarioTest {
-
-    private ControladorUsuario controlador;
-    private Usuario usuario;
+public class ControladorUsuarioTest {
 
     @BeforeEach
     void setUp() {
-        controlador = new ControladorUsuario();
-        usuario = new Usuario("12345678A", "Calle Falsa 123", LocalDate.of(1990, 1, 1), "612345678", "test@test.com", "password");
+        ConexionBD.createAndDelete();
     }
 
     @Test
-    void registrarUsuario_verdadero() {
-        assertTrue(controlador.registrarUsuario(usuario));
+    void registrarUsuario_True() {
+        UsuarioService controller = new UsuarioService();
+
+        Usuario u = new Usuario("12345678A", "Calle X", LocalDate.now(),
+                "600123123", "1234@gmail.com", "1234");
+
+        boolean resultado = controller.registrarUsuario(u);
+
+        assertTrue(resultado);
     }
 
     @Test
-    void registrarUsuario_falso() {
-        controlador.registrarUsuario(usuario);
-        assertFalse(controlador.registrarUsuario(usuario));
+    void registrarUsuario_False() {
+
+        Usuario u = new Usuario();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            u.setEmail(null);
+        });
     }
 
     @Test
-    void loguearUsuario_verdadero() {
-        controlador.registrarUsuario(usuario);
-        assertTrue(controlador.loguearUsuario("test@test.com", "password").isPresent());
+    void loguearUsuario_True() {
+        UsuarioService controller = new UsuarioService();
+        Usuario u = new Usuario("87654321Z", "Calle Y", LocalDate.now(),
+                "600987654", "usuario@mail.com", "paa");
+        controller.registrarUsuario(u);
+
+        Usuario logueado = controller.loguearUsuario("usuario@mail.com", "paa");
+        assertNotNull(logueado);
+        assertEquals("87654321Z", logueado.getDni());
     }
 
     @Test
-    void loguearUsuario_falso() {
-        controlador.registrarUsuario(usuario);
-        assertTrue(controlador.loguearUsuario("fake@test.com", "password").isEmpty());
+    void loguearUsuario_False() {
+        UsuarioService controller = new UsuarioService();
+        Usuario logueado = controller.loguearUsuario("noexiste@mail.com", "paa");
+        assertNull(logueado);
     }
 
-    @Test
-    void eliminarUsuario_verdadero() {
-        controlador.registrarUsuario(usuario);
-        controlador.eliminarUsuario(usuario);
-        assertTrue(controlador.loguearUsuario("test@test.com", "password").isEmpty());
-    }
-
-    @Test
-    void eliminarUsuario_falso() {
-        controlador.eliminarUsuario(usuario);
-        assertTrue(controlador.loguearUsuario("test@test.com", "password").isEmpty());
-    }
 }

@@ -1,30 +1,19 @@
 package org.example.model.producto;
 
-import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.Data;
 
-public class Camisa extends Producto{
+@Entity
+@DiscriminatorValue("CAMISA")
+@Data
+public class Camisa extends Producto {
 
     private int botones;
 
-
-    public Camisa(){
-        super();
-    }
-
-    public Camisa(String nombre, String marca, double precioInicial, int botones, TALLA talla, COLOR color){
+    public Camisa(String nombre, String marca, double precioInicial, int botones, TALLA talla, COLOR color) {
         super(nombre, marca, precioInicial, talla, color);
-        this.botones=botones;
-    }
-    
-    public int getBotones() {
-        return botones;
-    }
-
-
-    public void setBotones(int botones) {
         this.botones = botones;
     }
 
-
-    
 }

@@ -1,43 +1,23 @@
 [
   {
     "id": 1,
-    "fecha": 1761519489185,
+    "fecha": "nov 22, 2025",
     "estado": "PENDIENTE",
-    "lineaPedidos": [
+    "lineasPedido": [
       {
         "id": 1,
-        "cantidad": 2,
-        "producto": {
-          "botones": 6,
-          "id": 1,
-          "nombre": "Camisa Azul",
-          "marca": "Nike",
-          "precioInicial": 25.99,
-          "talla": "M",
-          "color": "AZUL",
-          "etiquetas": []
-        }
+        "cantidad": 2
       }
     ]
   },
   {
     "id": 2,
-    "fecha": 1761519489186,
+    "fecha": "nov 22, 2025",
     "estado": "FINALIZADO",
-    "lineaPedidos": [
+    "lineasPedido": [
       {
         "id": 2,
-        "cantidad": 1,
-        "producto": {
-          "botones": 8,
-          "id": 2,
-          "nombre": "Camisa Blanca",
-          "marca": "Adidas",
-          "precioInicial": 29.99,
-          "talla": "L",
-          "color": "BLANCO",
-          "etiquetas": []
-        }
+        "cantidad": 1
       }
     ]
   }

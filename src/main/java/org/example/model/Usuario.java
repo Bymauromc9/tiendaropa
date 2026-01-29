@@ -1,5 +1,8 @@
 package org.example.model;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
 import org.example.model.pedido.Pedido;
 import org.example.model.producto.Producto;
 
@@ -7,42 +10,60 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "usuarios")
+@Data
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(unique = true, nullable = false)
     private String dni;
+
+    private String nombre;
+
     private String direccion;
+
+    @Column(name = "fecha_nacimiento")
     private LocalDate fechaNacimiento;
     private String telefono;
+
+    @Column(unique = true, nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
-    private List<Producto> favoritos;
-    private List<Pedido> pedidos;
 
-    private static long contador=0;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "favoritos", joinColumns = @JoinColumn(name = "usuario_id"), inverseJoinColumns = @JoinColumn(name = "producto_id"))
+    private List<Producto> favoritos = new ArrayList<>();
 
-    public Usuario(String dni, String direccion, LocalDate fechaNacimiento, String telefono, String email, String password){
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Pedido> pedidos = new ArrayList<>();
 
-        if(dni== null || !dni.matches("\\d{8}[A-Z]"))
+    public Usuario() {
+        this.favoritos = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+    }
+
+    public Usuario(String dni, String direccion, LocalDate fechaNacimiento, String telefono, String email,
+            String password) {
+        if (dni == null || !dni.matches("\\d{8}[A-Z]"))
             throw new IllegalArgumentException("-- ERROR. DNI no valido");
-        if(direccion==null || direccion.isBlank())
-            throw new IllegalArgumentException("-- ERROR. Direeccion no valida");
-        if(fechaNacimiento==null)
+        if (fechaNacimiento == null)
             throw new IllegalArgumentException("-- ERROR. Fecha de nacimiento no valida");
-        if(telefono == null || !telefono.matches("\\d{9}")|| telefono.isEmpty())
-            throw new IllegalArgumentException("-- ERROR. Telefono no valido");
-        if(email==null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")|| email.isEmpty())
+        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$") || email.isEmpty())
             throw new IllegalArgumentException("-- ERROR. Email no valido");
-        if(password==null || password.isBlank())
+        if (password == null || password.isBlank())
             throw new IllegalArgumentException("-- ERROR. Contraseña no valida");
-        this.dni=dni;
-        this.direccion=direccion;
-        this.fechaNacimiento=fechaNacimiento;
-        this.telefono=telefono;
-        this.email=email;
-        this.password=password;
-        this.id=++contador;
-        this.favoritos=new ArrayList<>();
-        this.pedidos=new ArrayList<>();
+        this.dni = dni;
+        this.direccion = direccion;
+        this.fechaNacimiento = fechaNacimiento;
+        this.telefono = telefono;
+        this.email = email;
+        this.password = password;
+        this.favoritos = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
     }
 
     public Long getId() {
@@ -54,7 +75,7 @@ public class Usuario {
     }
 
     public void setDni(String dni) {
-        if(dni==null|| !dni.matches("\\d{8}[A-Z]"))
+        if (dni == null || !dni.matches("\\d{8}[A-Z]"))
             throw new IllegalArgumentException("-- ERROR. DNI no valido");
         this.dni = dni;
     }
@@ -64,18 +85,15 @@ public class Usuario {
     }
 
     public void setDireccion(String direccion) {
-        if(direccion==null||direccion.isEmpty())
-            throw new IllegalArgumentException("-- ERROR. Direccion no valida");
         this.direccion = direccion;
     }
-
 
     public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
     public void setFechaNacimiento(LocalDate fechaNacimiento) {
-        if(fechaNacimiento==null)
+        if (fechaNacimiento == null)
             throw new IllegalArgumentException("-- ERROR. La fecha de nacimiento no es valida");
         this.fechaNacimiento = fechaNacimiento;
     }
@@ -85,16 +103,15 @@ public class Usuario {
     }
 
     public void setTelefono(String telefono) {
-        if(telefono==null||telefono.isBlank()|| !telefono.matches("\\d{9}"))
-            throw new IllegalArgumentException("--ERROR. Telefono no valido");
         this.telefono = telefono;
     }
 
     public String getEmail() {
         return email;
     }
+
     public void setEmail(String email) {
-        if(email==null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))
+        if (email == null || !email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))
             throw new IllegalArgumentException("-- ERROR. Email no valido");
         this.email = email;
     }
@@ -104,7 +121,7 @@ public class Usuario {
     }
 
     public void setPassword(String password) {
-        if(password.isBlank())
+        if (password.isBlank())
             throw new IllegalArgumentException("-- ERROR. Contraseña no valida");
         this.password = password;
     }
@@ -114,19 +131,29 @@ public class Usuario {
     }
 
     public void setFavoritos(List<Producto> favoritos) {
-        if(favoritos==null)
-            throw new IllegalArgumentException("-- ERROR. Lista de favoritos no valida");
         this.favoritos = favoritos;
     }
-    public void addFavoritos(Producto producto){
-        if(producto==null)
-            throw new IllegalArgumentException("-- ERROR. Producto no valido");
-        favoritos.add(producto);
+
+    public void addFavoritos(Producto producto) {
+        if (producto != null) {
+            favoritos.add(producto);
+        }
     }
-    public List<Pedido> getPedidos() { return pedidos; }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 
     public void agregarPedido(Pedido pedido) {
         this.pedidos.add(pedido);
+        pedido.setUsuario(this);
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

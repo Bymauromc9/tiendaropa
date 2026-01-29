@@ -1,8 +1,18 @@
 package org.example.model.descuento;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 import org.example.model.producto.Producto;
 
-public class DescuentoFijo implements Descuento{
+@Entity
+@DiscriminatorValue("FIJO")
+@Data
+@NoArgsConstructor
+public class DescuentoFijo extends Descuento {
     private float descuento;
 
     public DescuentoFijo(float descuento) {
@@ -14,8 +24,8 @@ public class DescuentoFijo implements Descuento{
 
     @Override
     public double calcularMontoDescuento(Producto producto) {
-        double maxDescuento = producto.getPrecioInicial()*0.8;
-        if(descuento>maxDescuento)
+        double maxDescuento = producto.getPrecioInicial() * 0.8;
+        if (descuento > maxDescuento)
             throw new IllegalArgumentException("-- ERROR. El descuento fijo supera el 80% del precio");
         return descuento;
     }

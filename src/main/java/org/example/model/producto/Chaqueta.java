@@ -1,33 +1,28 @@
 package org.example.model.producto;
 
-public class Chaqueta extends Producto{
+import jakarta.persistence.Column;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.Data;
+
+@Entity
+@DiscriminatorValue("CHAQUETA")
+@Data
+public class Chaqueta extends Producto {
+    @Column(name = "con_capucha")
     private boolean conCapucha;
+    @Column(name = "nivel_abrigo")
     private int nivelAbrigo;
 
-
-    public Chaqueta(){
+    public Chaqueta() {
         super();
     }
-    public Chaqueta(String nombre, String marca, double precioInicial, int nivelAbrigo, boolean conCapucha, TALLA talla, COLOR color){
+
+    public Chaqueta(String nombre, String marca, double precioInicial, int nivelAbrigo, boolean conCapucha, TALLA talla,
+            COLOR color) {
         super(nombre, marca, precioInicial, talla, color);
-        this.nivelAbrigo=nivelAbrigo;
-        this.conCapucha=conCapucha; 
-    }
-
-
-    public boolean isConCapucha() {
-        return conCapucha;
-    }
-
-    public void setConCapucha(boolean conCapucha) {
+        this.nivelAbrigo = nivelAbrigo;
         this.conCapucha = conCapucha;
     }
 
-    public int getNivelAbrigo() {
-        return nivelAbrigo;
-    }
-
-    public void setNivelAbrigo(int nivelAbrigo) {
-        this.nivelAbrigo = nivelAbrigo;
-    }
 }

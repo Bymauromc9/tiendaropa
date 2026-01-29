@@ -3,6 +3,11 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.2</version> <relativePath/>
+    </parent>
 
     <groupId>org.example</groupId>
     <artifactId>TiendaRopa</artifactId>
@@ -14,33 +19,37 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.13.4</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency> 
-            <groupId>com.fasterxml.jackson.core</groupId> 
-        
-            <artifactId>jackson-databind</artifactId> 
-            <version>2.19.1</version> 
-        </dependency> 
-            <dependency> 
-            <groupId>com.fasterxml.jackson.datatype</groupId> 
-            <artifactId>jackson-datatype-jsr310</artifactId> 
-            <version>2.15.2</version> 
-        </dependency>
-        <dependency> 
-            <groupId>com.google.code.gson</groupId> 
-            <artifactId>gson</artifactId> 
-            <version>2.13.1</version> 
-        </dependency>
-        <dependency> 
-            <groupId>com.opencsv</groupId> 
-            <artifactId>opencsv</artifactId> 
-            <version>5.12.0</version> 
+        <!-- Keeping jackson/gson/opencsv if logic still creates/uses generic files, though usually not needed for standard DB apps. 
+             Leaving them out for now as per plan to clean up, unless explicitly required by logic I haven't seen in detail yet. 
+             If JSON parsing is needed manually, Spring Boot Starter Web includes Jackson. 
+        -->
+        <dependency>
+            <groupId>com.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>5.9</version>
         </dependency>
     </dependencies>
 
